@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
@@ -30,6 +31,20 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
+
+    //sound
+    public AudioClip collectSound;
+    public AudioClip deathSound;
+
+    public AudioSource backgroundMusic;
+
+    public TextMeshProUGUI countText;
+    public TextMeshProUGUI winLooseText;
+
+    private AudioSource audioSource;
+
+    private int count = 0;
+    private int maxCount = 50;
 
     Vector3 moveDirection;
 
@@ -115,5 +130,51 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    //Trigger and screen selection
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("FlyingObjects"))
+        {
+            audioSource.PlayOneShot(collectSound);
+
+            other.gameObject.SetActive(false);
+
+            count = count + 1;
+            //count += 1;
+            //count++;
+
+            SetCountText();
+
+            if (count >= maxCount)
+            {
+                winLooseText.text = "Y I P P I E   Y E I H   Y E H ! ! !";
+
+                Invoke("BackToMenu", 5.0f);
+            }
+        }
+        else if (other.gameObject.CompareTag("Books"))
+        {
+            backgroundMusic.Stop();
+            audioSource.PlayOneShot(deathSound);
+
+            winLooseText.text = "G A M E  O V E R";
+
+            rb.isKinematic = true;
+
+            Invoke("BackToMenu", 5.0f);
+        }
+    }
+
+    private void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString() + " | " + maxCount.ToString();
+    }
+
+    private void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
