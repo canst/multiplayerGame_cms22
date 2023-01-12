@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e15634ca6052ac8489bd25f756b0b801
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Astonished
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5360427b238552241a0863e1cae64f91, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
