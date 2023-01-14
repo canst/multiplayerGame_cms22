@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: ASTONISHED SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -714243067
   material: {fileID: 3463876325949184547}
-  materialHashCode: 0
+  materialHashCode: -236158331
   m_Version: 1.1.0
   m_SourceFontFileGUID: e15634ca6052ac8489bd25f756b0b801
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: e15634ca6052ac8489bd25f756b0b801,
@@ -2693,9 +2693,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
