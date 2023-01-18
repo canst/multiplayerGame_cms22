@@ -847,6 +847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 3f6b1cd139b074495a54d1c7e03dd63b,
         type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3f6b1cd139b074495a54d1c7e03dd63b,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: adbbc859f7aab458ba3f2475be0e210b, type: 2}
@@ -854,6 +859,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sofa
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f6b1cd139b074495a54d1c7e03dd63b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6b1cd139b074495a54d1c7e03dd63b, type: 3}
