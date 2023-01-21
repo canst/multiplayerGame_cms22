@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
+using static UnityEngine.AnimationClip;
+
 public class Player : MonoBehaviour
 {
 
@@ -10,6 +12,19 @@ public class Player : MonoBehaviour
     public Action<int> OnTakeDamage;
     public Action OnCreepyObjectDestroyed;
 
+    //adding hand aninmation script
+
+    Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    void AnimateHand()
+    {
+        animator.SetTrigger("HandAnimation");
+    }
 
     private void Update()
     {
