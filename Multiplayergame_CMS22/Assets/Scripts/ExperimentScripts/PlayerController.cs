@@ -1,12 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 20f;
+    [Header("Movement")]
+    public float moveSpeed;
 
+    public float groundDrag;
+
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMultiplier;
+    bool readyToJump;
+
+    [HideInInspector] public float walkSpeed;
+    [HideInInspector] public float sprintSpeed;
+
+    [Header("Keybinds")]
+    public KeyCode jumpKey = KeyCode.Space;
+
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    bool grounded;
+
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+    //sound
     public AudioClip collectSound;
     public AudioClip deathSound;
 
@@ -15,44 +41,102 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI countText;
     public TextMeshProUGUI winLooseText;
 
-    private Rigidbody rb;
-
-    private float movementX;
-    private float movementY;
-
     private AudioSource audioSource;
 
     private int count = 0;
-    private int maxCount = 0;
+    private int maxCount = 50;
 
-    void Start()
+    Vector3 moveDirection;
+
+    Rigidbody rb;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        rb.freezeRotation = true;
 
-        count = 0;
-        maxCount = GameObject.FindGameObjectsWithTag("Diamond").Length;
-        SetCountText();
+        readyToJump = true;
     }
 
-    private void OnMove(InputValue movementValue)
+    private void Update()
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
+        // ground check
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+        MyInput();
+        SpeedControl();
+
+        // handle drag
+        if (grounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0f, movementY);
-
-        rb.AddForce(movement * speed);
+        MovePlayer();
     }
+
+    private void MyInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        // when to jump
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            readyToJump = false;
+
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+
+    private void MovePlayer()
+    {
+        // calculate movement direction
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        // on ground
+        if (grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        // in air
+        else if (!grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // limit velocity if needed
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
+
+    private void Jump()
+    {
+        // reset y velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void ResetJump()
+    {
+        readyToJump = true;
+    }
+
+    //Trigger and screen selection
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Diamond"))
+        if (other.gameObject.CompareTag("FlyingObjects"))
         {
             audioSource.PlayOneShot(collectSound);
 
@@ -71,7 +155,7 @@ public class PlayerController : MonoBehaviour
                 Invoke("BackToMenu", 5.0f);
             }
         }
-        else if (other.gameObject.CompareTag("Enemy"))
+        else if (other.gameObject.CompareTag("Books"))
         {
             backgroundMusic.Stop();
             audioSource.PlayOneShot(deathSound);
@@ -92,13 +176,5 @@ public class PlayerController : MonoBehaviour
     private void BackToMenu()
     {
         SceneManager.LoadScene(0);
-    }
-}
-
-internal class InputValue
-{
-    internal T Get<T>()
-    {
-        throw new NotImplementedException();
     }
 }
