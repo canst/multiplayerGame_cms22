@@ -9799,24 +9799,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1386003377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b529202c99b35c49927ccf1c33c6992, type: 3}
+  m_Script: {fileID: 11500000, guid: adf60181fe9f2f3469d63bd78f08426c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 883598527}
   timeAliveText: {fileID: 1682499039}
-  timeAliveGameOverText: {fileID: 1949739694}
+  timeAliveGameOverText: {fileID: 2095951017}
   destroyedObjectsText: {fileID: 2032836698}
   gameOverUIGameObject: {fileID: 1575551127}
   player: {fileID: 1771984473}
-  objectInterval: 6
-  fullHpImage: {fileID: 21300000, guid: 292bdab7df0df6e4aae2c051824d04ea, type: 3}
-  emptyHpImage: {fileID: 21300000, guid: 7abbcc4582780944b8422ab6778a6a45, type: 3}
-  healthImages:
-  - {fileID: 15159578}
-  - {fileID: 1011852104}
-  - {fileID: 1636282458}
-  - {fileID: 1432106151}
-  - {fileID: 1989755304}
+  objectInterval: 5
+  fullHpImage: {fileID: 0}
+  emptyHpImage: {fileID: 0}
+  healthImages: []
 --- !u!1001 &1396102531
 PrefabInstance:
   m_ObjectHideFlags: 0
