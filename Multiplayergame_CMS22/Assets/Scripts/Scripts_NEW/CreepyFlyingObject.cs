@@ -69,8 +69,7 @@ public class CreepyFlyingObject : MonoBehaviour
     {
         _activated = true;
         targetTransform = FindObjectOfType<Player>().transform;
-        _targetPosition = targetTransform.position;
-        transform.rotation = Quaternion.identity;
+        _targetPosition = targetTransform.position - (transform.parent.position - transform.position);
     }
     
 }
