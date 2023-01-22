@@ -2,6 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class MessageListener : MonoBehaviour
+{
+    // Invoked when a line of data is received from the serial device.
+    void OnMessageArrived(string msg)
+    {
+        Debug.Log("Message arrived: " + msg);
+        //gameObject.SendMessage("PlayerCam", 1);
+    }
+
+    // Invoked when a connect/disconnect event occurs. The parameter 'success'
+    // will be 'true' upon connection, and 'false' upon disconnection or
+    // failure to connect.
+    void OnConnectionEvent(bool success)
+    {
+        if (success)
+            Debug.Log("Connection established");
+        else
+            Debug.Log("Connection attempt failed or disconnection detected");
+    }
+}
 public class PlayerCam : MonoBehaviour
 {
     public float sensX;
@@ -11,22 +32,28 @@ public class PlayerCam : MonoBehaviour
 
     float xRotation;
     float yRotation;
+    float anglee;
+    string msg;
 
-    private void Start()
+    //string OnMessageArrived = float.OnMessageArrived;
+
+
+private void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
-       // Cursor.visible = false;
+        // Cursor.visible = false;
+  
     }
-
-    private void Update()
+        private void Update()
     {
+       
         // get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+    
+        yRotation = anglee;
 
-        yRotation += mouseX;
-
-        xRotation -= mouseY;
+        xRotation = anglee;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         // rotate cam and orientation
