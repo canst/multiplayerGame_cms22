@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 6812392456963206678}
-  delayUntilMovementStarts: 4
-  timeToFly: 4
+  delayUntilMovementStarts: 2
+  timeToFly: 3
   targetTransform: {fileID: 0}
 --- !u!1 &795784749736138451
 GameObject:
@@ -207,7 +207,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b6d7e0b018e000b4cbcc5eb732c42a05, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d7c0c2367044c0f48891985ec4e3b6c3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 0.76
@@ -215,7 +215,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 114
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
