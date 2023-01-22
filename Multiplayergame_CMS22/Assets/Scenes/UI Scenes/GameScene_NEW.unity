@@ -9804,14 +9804,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 883598527}
   timeAliveText: {fileID: 1682499039}
-  timeAliveGameOverText: {fileID: 2095951017}
+  timeAliveGameOverText: {fileID: 1949739694}
   destroyedObjectsText: {fileID: 2032836698}
   gameOverUIGameObject: {fileID: 1575551127}
   player: {fileID: 1771984473}
   objectInterval: 5
-  fullHpImage: {fileID: 0}
-  emptyHpImage: {fileID: 0}
-  healthImages: []
+  fullHpImage: {fileID: 21300000, guid: 292bdab7df0df6e4aae2c051824d04ea, type: 3}
+  emptyHpImage: {fileID: 21300000, guid: 7abbcc4582780944b8422ab6778a6a45, type: 3}
+  healthImages:
+  - {fileID: 15159578}
+  - {fileID: 1011852104}
+  - {fileID: 1636282458}
+  - {fileID: 1432106151}
+  - {fileID: 1989755304}
 --- !u!1001 &1396102531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10210,7 +10215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Objects hit
+  m_text: Smashed Objects
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 047a64cfcead68d4f959e4c44a0faed0, type: 2}
   m_sharedMaterial: {fileID: 7099877466145593957, guid: 047a64cfcead68d4f959e4c44a0faed0,
@@ -15145,7 +15150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7abbcc4582780944b8422ab6778a6a45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 292bdab7df0df6e4aae2c051824d04ea, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
