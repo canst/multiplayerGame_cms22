@@ -3650,7 +3650,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
+  - 0.6
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
@@ -5001,7 +5001,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1224021781}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5411441
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
