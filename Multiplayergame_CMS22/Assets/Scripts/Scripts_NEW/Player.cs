@@ -10,13 +10,24 @@ public class Player : MonoBehaviour
     public Action<int> OnTakeDamage;
     public Action OnCreepyObjectDestroyed;
 
+    private Animator anim;
+
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown((int)MouseButton.Left))
         {
+            
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
+
 
             if (Physics.Raycast(ray, out hit))
             {
@@ -32,6 +43,10 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+            
+            
+        }
+       
         }
     }
 
@@ -44,4 +59,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HandleAnimation()
+    {
+        
+        
+       
+
+    }
 }
