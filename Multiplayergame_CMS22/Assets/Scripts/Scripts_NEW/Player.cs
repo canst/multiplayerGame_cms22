@@ -4,7 +4,7 @@ using UnityEngine.InputSystem.LowLevel;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player1 : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     [SerializeField] int destroyDistance = 20;
