@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 4094645013955584537}
   delayUntilMovementStarts: 4
-  timeToFly: 4
+  timeToFly: 6
   targetTransform: {fileID: 0}
 --- !u!1 &6661073250386794657
 GameObject:
@@ -209,7 +209,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e8a4fefbebd66e848af1f779d24b1c0f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.507
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

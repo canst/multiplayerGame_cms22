@@ -4,8 +4,8 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class Player : MonoBehaviour
 {
-
-    [SerializeField] int destroyDistance = 20;
+    [SerializeField] float destroyRadius = 20f;
+    //[SerializeField] int destroyDistance = 20;
     
     public Action<int> OnTakeDamage;
     public Action OnCreepyObjectDestroyed;
@@ -13,17 +13,23 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown((int) MouseButton.Left))
+        if (Input.GetMouseButtonDown((int)MouseButton.Left))
         {
-            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast (ray, out hit, destroyDistance)) {
-                Debug.Log($"hit gameobject {hit.transform.name}");
-                CreepyFlyingObject possibleCreepyObject = hit.transform.gameObject.GetComponent<CreepyFlyingObject>();
-                if (possibleCreepyObject && possibleCreepyObject.IsAttackingPlayer)
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Collider[] hitColliders = Physics.OverlapSphere(hit.point, destroyRadius);
+                for (int i = 0; i < hitColliders.Length; i++)
                 {
-                    Destroy(possibleCreepyObject.gameObject);
-                    OnCreepyObjectDestroyed?.Invoke();
+                    CreepyFlyingObject possibleCreepyObject = hitColliders[i].GetComponent<CreepyFlyingObject>();
+                    if (possibleCreepyObject && possibleCreepyObject.IsAttackingPlayer)
+                    {
+                        Destroy(possibleCreepyObject.gameObject);
+                        OnCreepyObjectDestroyed?.Invoke();
+                        break;
+                    }
                 }
             }
         }
