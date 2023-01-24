@@ -11,17 +11,31 @@ public class Player : MonoBehaviour
     public Action OnCreepyObjectDestroyed;
 
     private Animator anim;
+    private bool det;
 
-
+    
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
     }
 
+    void OnMessageArrived(string ms)
+    {
+        Debug.Log("AAAA: " + ms);
+        {
+            if (ms == "bang!")
+
+                det = true;
+            else
+                det = false;
+        }
+
+    }
+
     private void Update()
     {
         
-        if (Input.GetMouseButtonDown((int)MouseButton.Left))
+        if (Input.GetMouseButtonDown((int)MouseButton.Left) || det == true)
         {
            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -64,5 +78,13 @@ public class Player : MonoBehaviour
         
        
 
+    }
+
+    void OnConnectionEvent(bool success)
+    {
+        if (success)
+            Debug.Log("Connection established");
+        else
+            Debug.Log("Connection attempt failed or disconnection detected");
     }
 }
