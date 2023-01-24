@@ -10,16 +10,28 @@ public class Player : MonoBehaviour
     public Action<int> OnTakeDamage;
     public Action OnCreepyObjectDestroyed;
 
+    private Animator anim;
+
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
 
     private void Update()
     {
+        
         if (Input.GetMouseButtonDown((int)MouseButton.Left))
         {
+           
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+           
 
             if (Physics.Raycast(ray, out hit))
             {
+                anim.Play("Hit",0,0);
+
                 Collider[] hitColliders = Physics.OverlapSphere(hit.point, destroyRadius);
                 for (int i = 0; i < hitColliders.Length; i++)
                 {
@@ -32,7 +44,9 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+            
         }
+       
     }
 
     private void OnCollisionEnter(Collision other)
@@ -44,4 +58,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HandleAnimation()
+    {
+        
+        
+       
+
+    }
 }
